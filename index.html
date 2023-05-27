@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/SignUp Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <style>
+        h1{
+            font-family: Lobster;
+            letter-spacing: 0.2rem;
+            text-align: center;
+            padding: 0.25em;
+        }
+        .page{
+            background-color: honeydew;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%) scale(1.5);
+            padding: 20px;
+        }
+        .button{
+            display: flex;
+            justify-content: center;
+            align-items:center;
+        }
+        body{
+            background-color: moccasin;
+        }
+        /*.button-1{
+            padding-right:1rem;
+            color: aqua;
+        }
+        .button-2{
+            padding-left:1rem;
+            background-color: aqua;
+        }*/
+        input[type="submit"]{
+            /*display: flex;
+            justify-content: center;
+            align-items:center;*/
+            background-color: rgb(5, 66, 247);
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+            cursor:pointer;
+            border: 0.5em solid rgb(5,66,247);
+            border-radius:65%;
+            color: darkorange;
+        }
+        /*p+input[type="submit"]{
+            padding-right:1rem;
+        }
+        span+input[type="submit"]{
+            padding-left:1rem;
+        }*/
+        .or{
+            text-align: center;
+        }
+        .signup_all{
+            /*left:50%;
+            transform: translate(-50%);*/
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <h1>Find Your Receipe</h1>
+        <p>SignUp to have your favourite receipies at your fingertips</p>
+        <a href="login.html" target="_blank">
+            <input type="submit" value="Login">
+        </a>
+        <br>
+        <p class="or">OR</p>
+        <div class="signup_all">
+            <p class="signup" id="mob_mail"><input type="text" placeholder="Mobile Number/Email"></p>
+            <p class="signup" id="fullname"><input type="text" placeholder="Full Name"></p>
+            <p class="signup" id="username"><input type="text" placeholder="Username"></p>
+            <p class="signup" id="Password"><input type="text" placeholder="Password"></p>
+        </div>
+        <span></span>
+        <a href="SignUp.html" target="_blank">
+            <input type="submit" value="SignUp" onclick="test()">
+        </a>
+        <br>
+    </div>
+</body>
+<script src="recipe.js"></script>
+</html>
