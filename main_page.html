@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>main_page</title>
@@ -43,7 +43,7 @@
         body{
             background-color: moccasin;
         }
-        input[type="submit"]{
+        #sub_btn{
             background-color: rgb(5, 66, 247);
             position: absolute;
             left: 50%;
@@ -53,9 +53,10 @@
             border-radius:65%;
             color: darkorange;
         }
-        .input{
+        .size{
             text-align: center;
         }
+
     </style>
 </head>
 <body>
@@ -63,11 +64,12 @@
         <div class="page">
             <h1>Find Your Receipe</h1>
             <h3>Enter Item Name</h3>
-            <p class="input"><input type="text" placeholder="Please enter Dish Name"></p>
+            <p class="size" id ="size"><input class="input" id="input" type="text" placeholder="Please enter Dish Name"></p>
             <br>
-            <input type="submit" value="Get Receipe">
+            <button type="submit" id="sub_btn"> Get Receipe </button>
             <br><br>
         </div>
     </form>
+    <script src="recipe.js"></script>
 </body>
 </html>

@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrap.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="recipe.js"></script>
     <style>
         h1{
             font-family: Lobster;
@@ -22,6 +24,7 @@
             left: 50%;
             transform: translate(-50%,-50%) scale(1.5);
             padding: 20px;
+            height:20rem;
         }
         .button{
             display: flex;
@@ -39,16 +42,14 @@
             padding-left:1rem;
             background-color: aqua;
         }*/
-        input[type="submit"]{
+        .sub{
             /*display: flex;
             justify-content: center;
             align-items:center;*/
-            background-color: rgb(5, 66, 247);
             position: absolute;
             left: 50%;
-            transform: translate(-50%);
+            transform: translate(-50%) scale(0.75);
             cursor:pointer;
-            border: 0.5em solid rgb(5,66,247);
             border-radius:65%;
             color: darkorange;
         }
@@ -72,23 +73,138 @@
     <div class="page">
         <h1>Find Your Receipe</h1>
         <p>SignUp to have your favourite receipies at your fingertips</p>
-        <a href="login.html" target="_blank">
-            <input type="submit" value="Login">
-        </a>
-        <br>
-        <p class="or">OR</p>
         <div class="signup_all">
-            <p class="signup" id="mob_mail"><input type="text" placeholder="Mobile Number/Email"></p>
+            <p class="signup" id="mail"><input type="email" placeholder="Email"></p>
             <p class="signup" id="fullname"><input type="text" placeholder="Full Name"></p>
             <p class="signup" id="username"><input type="text" placeholder="Username"></p>
-            <p class="signup" id="Password"><input type="text" placeholder="Password"></p>
+            <p class="signup" id="Password"><input type="password" placeholder="Password"></p>
         </div>
         <span></span>
-        <a href="SignUp.html" target="_blank">
-            <input type="submit" value="SignUp" onclick="test()">
-        </a>
-        <br>
+        <div class="sub">
+            <a href="main_page.html" target="_blank">
+                <button id="Login">Login</button>
+            </a>
+            <a href="main_page.html" target="_blank">
+                <button id="signUp">SignUp</button>
+            </a>
+        </div>
     </div>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyD23nFAN29ElbZPmr3DiZwH87SR69HJLTM",
+          authDomain: "recipe-finder-web-app.firebaseapp.com",
+          projectId: "recipe-finder-web-app",
+          storageBucket: "recipe-finder-web-app.appspot.com",
+          messagingSenderId: "714706659570",
+          appId: "1:714706659570:web:a6d8546401f08d8a67886b",
+          measurementId: "G-7FHCGKMYD5"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth=getAuth(app);
+        const analytics = getAnalytics(app);
+        import{getDatabase,set,get,ref,child} 
+        from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+        const db=getDatabase();
+        const email=document.getElementById("mail");
+        const full_name=document.getElementById("fullname");
+        const username=document.getElementById("username");
+        const pass=document.getElementById("Password");
+        const page=document.getElementById("page");
+
+
+
+        /*var insertBtn=document.querySelector("#SignUp");
+        insertBtn.addEventListener('click',insertData);*/
+        const userSignUp = async() => {
+            /*set(ref(db,"People/"+email.value), {
+                Email:email.value,
+                /*Name:full_name.value,
+                User:user.value,
+                Pass:pass.value
+            })
+            .then(()=>{
+                alert("Data entered successfully");
+            })
+            .catch((error)=>{
+                alert(error)
+            });*/
+            const signUpEmail=email.value;
+            const signUpName=full_name.value;
+            const signUpUser=username.value;
+            const signUpPassword=pass.value;
+            createUserWithEmailAndPassword(page,SignUpEmail,SignUpPassword)
+            .then((userCredential)=>{
+                const user=userCredential.user;
+                alert("Your account has been created");
+                console.log(user);
+            })
+            .catch((error)=>{
+                const errorCode=error.code;
+                const errorMessage=error.message;
+                console.log(errorCode+errorMessage);
+                alert("There is an error");
+            })
+        }
+        const userLogin = async() => {
+            /*set(ref(db,"People/"+email.value), {
+                Email:email.value,
+                /*Name:full_name.value,
+                User:user.value,
+                Pass:pass.value
+            })
+            .then(()=>{
+                alert("Data entered successfully");
+            })
+            .catch((error)=>{
+                alert(error)
+            });*/
+            const loginEmail=email.value;
+            const loginName=full_name.value;
+            const loginUser=username.value;
+            const loginPassword=pass.value;
+            signInWithEmailAndPassword(page,loginEmail,loginPassword)
+            .then((userCredential)=>{
+                const user=userCredential.user;
+                alert("Your account has been created");
+                console.log(user);
+            })
+            .catch((error)=>{
+                const errorCode=error.code;
+                const errorMessage=error.message;
+                console.log(errorCode+errorMessage);
+                alert("There is an error");
+            })
+        }
+        const checkAuthState=async()=>{
+            onAuthStateChanged(auth,user=>{
+                if(user){
+                    window.open("main_page.html",'newwindow');
+                }
+                else{
+                    window.open("error404.html",'newwindow');
+                }
+            })
+        }
+        checkAuthState();
+        signUp.addEventListener('click',userSignUp);
+        Login.addEventListener('click',userLogin);
+    </script>
 </body>
-<script src="recipe.js"></script>
 </html>

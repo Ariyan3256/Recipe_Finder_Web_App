@@ -1,29 +1,22 @@
-function test(){
-    var m_email=document.getElementById("mob_mail");
-    var full_name=document.getElementById("fullname");
-    var user=document.getElementById("username");
-    var pass=document.getElementById("Password");
+/*sub_btn.addEventListener('click', dish_search);
+const dish_search=async()=>{
+    
+}*/
+//let namasteBtn=document.querySelector('button');
+sub_btn.addEventListener('click',showMsg);
 
-
-
-    var mail=localStorage.setItem("m_email",m_email).value;
-    var name=localStorage.setItem("full_name",full_name).value;
-    var user=localStorage.setItem("user",user).value;
-    var pass=localStorage.setItem("pass",pass).value;
-
-
-    var a,b,c,d;
-    a="8420803535";
-    b="Ariyan Banerjee";
-    c="ccism";
-    d="123";
-
-
-
-    if(a==mail && b==name && c==user && d==pass){
-        alert("Already Registered User");
+function showMsg(){
+    //alert("Namaste World");
+    var i=0;
+    const dish=document.getElementById('input');
+    //alert(dish);
+    const dishName=dish.value;
+    if(dishName=='chicken'){
+        window.open('chicken.html','newwindow');
     }
-    else{
-        alert("SignUp successful");
+    else if(dishName=='dessert'){
+        window.open('dessert.html','newwindow');
     }
+    console.log();
+    alert(dishName);
 }
